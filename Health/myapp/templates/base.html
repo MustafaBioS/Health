@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,16 +52,16 @@
     <div class="bg-[#0b1a4a] h-24 w-full border-b-4 border-black grid grid-cols-3 items-center">
         <div id="left"></div>
         <div id="center" class="flex flex-row items-center justify-center w-full gap-8">
-            <h1 class="nvi text-3xl text-white underline font-semibold">Nutrition</h1>
-            <h1 class="nvi text-3xl text-white font-semibold">Water</h1>
-            <h1 class="nvi text-3xl text-white font-semibold">Sleep</h1>
+            <h1 class="nvi text-3xl text-white underline font-semibold select-none">Nutrition</h1>
+            <h1 class="nvi text-3xl text-white font-semibold select-none">Water</h1>
+            <h1 class="nvi text-3xl text-white font-semibold select-none">Sleep</h1>
         </div>
-        <div id="right" class="flex flex-row items-center justify-end gap-5">
+        <div id="right" class="flex flex-row items-center justify-end gap-3">
             {% if user.is_authenticated %}
-                <img src="{{ current_user.pfp }}" alt="Profile Picture" class="pic rounded-full h-14 mr-12">
+                <img src="{{ user.pfp }}" alt="Profile Picture" class="pic rounded-full h-14 mr-12">
             {% else %}
-                <button id="btn" class="h-10 w-28 bg-white text-black text-xl rounded-xl">Sign Up</button>
-                <button id="btn2" class="h-11 w-28 bg-black text-white text-xl rounded-xl mr-12">Login</button>
+                <button id="btn" class="h-10 w-28 bg-white text-black text-xl rounded-xl select-none" data-create-url="{% url 'Create' %}">Sign Up</button>
+                <button id="btn2" class="h-11 w-28 bg-black text-white text-xl rounded-xl mr-12 select-none" data-login-url="{% url 'Login' %}">Login</button>
             {% endif %}
         </div>
     </div>
@@ -71,5 +72,6 @@
             
         {% endblock %}
     </div>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
