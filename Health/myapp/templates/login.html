@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,58 @@
     <title>{% block title %} Health - Login {% endblock %}</title>
     <link rel="icon" href="../static/images/1236334-200.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .inp::placeholder {
+            color: black;
+        }
+
+        #btn {
+            transition: all 0.3s ease;
+        }
+
+        #btn:hover {
+            opacity: 0.7;
+            transform: translateY(-4px);
+            cursor: pointer;
+        }
+
+        #btn2 {
+            transition: all 0.3s ease;
+        }
+
+        #btn2:hover {
+            opacity: 0.7;
+            transform: translateY(-4px);
+            cursor: pointer;
+        }
+
+        .anim {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .anim.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="m-0 p-0 bg-[#070f2b]">
-    
+    <div class="container mx-auto flex items-center justify-center h-screen w-screen">
+        <div class="anim h-175 w-125 bg-[#0b1a4a] rounded-xl flex flex-col items-center">
+            <h1 class="anim text-5xl text-white font-semibold mt-12">Login</h1>
+            <form class="flex flex-col justify-center items-center h-[72%] w-full">
+                <input type="text" id="user" placeholder="Enter Your Username" name="user" class="anim inp bg-white w-[55%] h-10 rounded-xl p-4 outline-none border-none">
+                <input type="email" id="email" placeholder="Enter Your Email Address" name="email" class="anim inp bg-white mt-6 w-[55%] h-10 rounded-xl p-4 outline-none border-none">
+                <input type="password" id="pass" placeholder="Enter Your Password" name="pass" class="anim inp bg-white mt-6 w-[55%] h-10 rounded-xl p-4 outline-none border-none">
+                <div class="flex flex-row w-full justify-center mt-8 gap-2">
+                    <button id="btn" class="anim h-10 w-28 bg-white text-black text-xl rounded-xl select-none" data-create-url="{% url 'Create' %}">Sign Up</button>
+                    <button id="btn2" class="anim h-11 w-28 bg-black text-white text-xl rounded-xl select-none" data-login-url="{% url 'Login' %}">Login</button>
+                </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
