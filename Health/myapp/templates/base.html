@@ -46,15 +46,20 @@
             transform: translateY(-4px);
             cursor: pointer;
         }
+
+        .container {
+            height: calc(100vh - 6rem);
+        }
+
     </style>
 </head>
 <body class="m-0 p-0 bg-[#070f2b]">
     <div class="bg-[#0b1a4a] h-24 w-full border-b-4 border-black grid grid-cols-3 items-center">
         <div id="left"></div>
         <div id="center" class="flex flex-row items-center justify-center w-full gap-8">
-            <h1 class="nvi text-3xl text-white underline font-semibold select-none">Nutrition</h1>
-            <h1 class="nvi text-3xl text-white font-semibold select-none">Water</h1>
-            <h1 class="nvi text-3xl text-white font-semibold select-none">Sleep</h1>
+            <a class="nvi text-3xl text-white underline font-semibold select-none" href="{% url 'Home' %}">Nutrition</a>
+            <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Water' %}">Water</a>
+            <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Sleep' %}">Sleep</a>
         </div>
         <div id="right" class="flex flex-row items-center justify-end gap-3">
             {% if user.is_authenticated %}
@@ -66,7 +71,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto">
+    <div class="container mx-auto flex items-center justify-center">
         {% block content %}
             
             
@@ -80,6 +85,6 @@
             {% endfor %}
         </div>
     {% endif %}
-    <script src="{% static 'js/script.js' %}?v=2"></script>
+    <script src="{% static 'js/script.js' %}?v=3"></script>
 </body>
 </html>

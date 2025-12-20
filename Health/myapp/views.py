@@ -3,11 +3,17 @@ from .models import Users
 from django.contrib.auth import get_user_model
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def home(request):
-    items = Users.objects.all()
-    return render(request, "nutrition.html", {"users": items})
+def nutrition(request):
+    return render(request, "nutrition.html")
+
+def water(request):
+    return render(request, "water.html")
+
+def sleep(request):
+    return render(request, "sleep.html")
 
 def login_view(request):
     if request.method == "POST":
@@ -68,6 +74,7 @@ def create(request):
 
     return render(request, "create.html")
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('Home')

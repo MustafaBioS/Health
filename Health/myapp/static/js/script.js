@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
             window.location.href = login.dataset.loginUrl;
         })
     }
-
-    console.log("Animating", anim.length, "elements3");
-    
 })
 
 const anim = document.querySelectorAll('.anim');
