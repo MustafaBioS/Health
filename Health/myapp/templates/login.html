@@ -42,23 +42,54 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        #sub {
+            transition: all 0.3s ease;
+        }
+
+        #sub:hover {
+            transform: translateY(-6px);
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        #anc {
+            transition: all 0.3s ease;
+        }
+
+        #anc:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="m-0 p-0 bg-[#070f2b]">
     <div class="container mx-auto flex items-center justify-center h-screen w-screen">
         <div class="anim h-175 w-125 bg-[#0b1a4a] rounded-xl flex flex-col items-center">
-            <h1 class="anim text-5xl text-white font-semibold mt-12">Login</h1>
-            <form class="flex flex-col justify-center items-center h-[72%] w-full">
-                <input type="text" id="user" placeholder="Enter Your Username" name="user" class="anim inp bg-white w-[55%] h-10 rounded-xl p-4 outline-none border-none">
-                <input type="email" id="email" placeholder="Enter Your Email Address" name="email" class="anim inp bg-white mt-6 w-[55%] h-10 rounded-xl p-4 outline-none border-none">
-                <input type="password" id="pass" placeholder="Enter Your Password" name="pass" class="anim inp bg-white mt-6 w-[55%] h-10 rounded-xl p-4 outline-none border-none">
-                <div class="flex flex-row w-full justify-center mt-8 gap-2">
-                    <button id="btn" class="anim h-10 w-28 bg-white text-black text-xl rounded-xl select-none" data-create-url="{% url 'Create' %}">Sign Up</button>
-                    <button id="btn2" class="anim h-11 w-28 bg-black text-white text-xl rounded-xl select-none" data-login-url="{% url 'Login' %}">Login</button>
+            <h1 class="anim text-5xl text-white font-semibold mt-12">{% block title2 %}Login{% endblock %}</h1>
+            {% block content %}
+            <form action="{% url 'Login' %}" method="post" class="flex flex-col justify-center items-center h-[100%] mt-20 w-full">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter Your Username Or Email" name="user" id="identifier" class="anim inp bg-white w-[55%] h-10 rounded-xl p-4 outline-none border-none" required>
+                <input type="password" id="pass" placeholder="Enter Your Password" name="pass" class="anim inp bg-white mt-6 w-[55%] h-10 rounded-xl p-4 outline-none border-none" required>
+                <input id="sub" value="Login" type="submit" class="anim h-11 w-36 bg-white text-black text-xl mt-7 rounded-xl select-none">
+                <div class="flex flex-row w-full justify-center items-end mt-30 gap-4">
+                    <button type="button" id="btn" class="anim h-10 w-28 bg-white text-black text-xl rounded-xl select-none" data-create-url="{% url 'Create' %}">Sign Up</button>
+                    <button type="button" id="btn2" class="anim h-11 w-28 bg-black text-white text-xl rounded-xl select-none" data-login-url="{% url 'Login' %}">Login</button>
                 </div>
-        </form>
+            </form>
+            {% endblock %}
     </div>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    {% if messages %}
+        <div class="w-full flex justify-center mt-4">
+            {% for message in messages %}
+                <p class="text-red-500">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script src="{% static 'js/script.js' %}?v=2"></script>
 </body>
 </html>
