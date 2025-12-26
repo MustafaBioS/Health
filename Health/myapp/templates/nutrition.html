@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Health - Nutrition {% endblock %}
 {% block content %}
-    <div class="h-50 w-50 bg-black"></div>
+    <div class="container mx-auto flex items-center justify-center h-screen w-screen">
+        <div id="box" class="anim h-175 w-225 bg-[#0b1a4a] rounded-xl flex flex-col">
+            <h1 class="text-center text-5xl text-white font-semibold mt-12">Nutrition</h1>
+            <h1 class="text-2xl text-white font-semibold mt-6 text-center">Goal: 1200 Kcal</h1>
+        </div>
+    </div>
 {% endblock%}

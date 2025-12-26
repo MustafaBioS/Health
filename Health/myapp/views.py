@@ -6,14 +6,18 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required(login_url='Login')
 def nutrition(request):
     return render(request, "nutrition.html")
 
+@login_required(login_url='Login')
 def water(request):
-    return render(request, "water.html")
+    return render(request, "water.html", {'user': request.user})
 
+@login_required(login_url='Login')
 def sleep(request):
-    return render(request, "sleep.html")
+    return render(request, "sleep.html", {'user': request.user})
 
 def login_view(request):
     if request.method == "POST":
@@ -74,7 +78,11 @@ def create(request):
 
     return render(request, "create.html")
 
-@login_required
+@login_required(login_url='Login')
+def settings(request):
+    return render(request, "settings.html")
+
+@login_required(login_url='Login')
 def logout_view(request):
     logout(request)
     return redirect('Home')

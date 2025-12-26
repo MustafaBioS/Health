@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Health - Water {% endblock %}
+
+{% block nvb %}
+    <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Home' %}">Nutrition</a>
+    <a class="nvi text-3xl text-white font-semibold underline select-none" href="{% url 'Water' %}">Water</a>
+    <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Sleep' %}">Sleep</a>
+{% endblock %}
+
 {% block content %}
 {% endblock%}

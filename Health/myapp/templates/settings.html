@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Health - Profile Settings {% endblock %}
+{% block body %}
+<body class="overflow-hidden m-0 p-0 bg-[#070f2b]">
+{% endblock %}
+{% block nvb %}
+
+    <style>
+        #sidebar {
+            transition: all 0.3s ease;
+        }
+
+        #sidebar.closed {
+            transform: translateX(-220px);
+        }
+
+        #toggler {
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: white;
+            font-size: 40px;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar.closed .toggler {
+            transform: translateY(-50%);
+        }
+
+        .clicked {
+            background-color: #030a24;
+        }
+
+        .box {
+            pointer-events: none;
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+            max-height: 0;
+            width: 0;
+            max-width: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(1002px);
+            transition: all 0.3s ease;
+        }
+
+        .chosen {
+            display: flex;
+        }
+
+        .box.chosen {
+            pointer-events: auto;
+            visibility: visible;
+            height: 46.25rem;
+            max-height: 50rem;
+            width: 56.25rem;
+            max-width: 60rem;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+    </style>
+
+    <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Home' %}">Nutrition</a>
+    <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Water' %}">Water</a>
+    <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Sleep' %}">Sleep</a>
+{% endblock %}
+{% block sidebar %}
+    <div id="sidebar" class="rounded-r-2xl bg-[#0b1a4a] border-r-2 border-black h-screen w-65 fixed flex flex-col items-center justify-center">
+        <button id="toggler" class="absolute select-none">></button>
+        <button id="profileBtn" class="select-none btn w-[70%] h-16 rounded-xl text-2xl bg-black mt-6 text-white">Profile</button>
+        <button id="goalsBtn" class="select-none btn w-[70%] h-16 rounded-xl text-2xl bg-black mt-6 text-white">Goals</button>
+        <button id="secBtn" class="select-none btn w-[70%] h-16 rounded-xl text-2xl bg-black mt-6 text-white">Security</button>
+        <button id="accBtn" class="select-none btn w-[70%] h-16 rounded-xl text-2xl bg-black mt-6 text-white">Account</button>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container mx-auto flex items-center justify-center h-screen w-screen">
+        <div id="profileBox" class="box anim h-185 w-225 bg-[#0b1a4a] rounded-xl flex flex-col">
+            <h1 class="text-center text-5xl text-white font-semibold mt-12">Profile Settings</h1>
+        </div>
+
+        <div id="goalsBox" class="box anim h-185 w-225 bg-[#0b1a4a] rounded-xl flex flex-col">
+            <h1 class="text-center text-5xl text-white font-semibold mt-12">Goal Settings</h1>
+        </div>
+
+        <div id="secBox" class="box anim h-185 w-225 bg-[#0b1a4a] rounded-xl flex flex-col">
+            <h1 class="text-center text-5xl text-white font-semibold mt-12">Security Settings</h1>
+        </div>
+
+        <div id="accBox" class="box anim h-185 w-225 bg-[#0b1a4a] rounded-xl flex flex-col">
+            <h1 class="text-center text-5xl text-white font-semibold mt-12">Account Settings</h1>
+        </div>
+    </div>
+{% endblock %}

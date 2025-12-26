@@ -7,7 +7,7 @@
     <title>{% block title %}Health - Nutrition{% endblock %}</title>
     <link rel="icon" href="../static/images/1236334-200.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+{% block style %}
     <style>
         .nvi {
             transition: all 0.3s ease;
@@ -47,23 +47,32 @@
             cursor: pointer;
         }
 
-        .container {
+        .container, #sidebar {
             height: calc(100vh - 6rem);
         }
 
+        #box {
+            box-shadow: 0px 2px 50px rgba(0,0,0,0.6);
+        }
+
     </style>
+{% endblock %}
 </head>
+{% block body %}
 <body class="m-0 p-0 bg-[#070f2b]">
+{% endblock %}
     <div class="bg-[#0b1a4a] h-24 w-full border-b-4 border-black grid grid-cols-3 items-center">
         <div id="left"></div>
         <div id="center" class="flex flex-row items-center justify-center w-full gap-8">
-            <a class="nvi text-3xl text-white underline font-semibold select-none" href="{% url 'Home' %}">Nutrition</a>
-            <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Water' %}">Water</a>
-            <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Sleep' %}">Sleep</a>
+            {% block nvb %}
+                <a class="nvi text-3xl text-white underline font-semibold select-none" href="{% url 'Home' %}">Nutrition</a>
+                <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Water' %}">Water</a>
+                <a class="nvi text-3xl text-white font-semibold select-none" href="{% url 'Sleep' %}">Sleep</a>
+            {% endblock %}
         </div>
         <div id="right" class="flex flex-row items-center justify-end gap-3">
             {% if user.is_authenticated %}
-                <img src="{{ user.pfp }}" alt="Profile Picture" class="pic rounded-full h-14 mr-12">
+                <img src="{{ user.pfp.url }}" data-settings-url="{% url 'Settings' %}" alt="Profile Picture" class="pic rounded-full h-14 mr-12">
             {% else %}
                 <button id="btn" class="h-10 w-28 bg-white text-black text-xl rounded-xl select-none" data-create-url="{% url 'Create' %}">Sign Up</button>
                 <button id="btn2" class="h-11 w-28 bg-black text-white text-xl rounded-xl mr-12 select-none" data-login-url="{% url 'Login' %}">Login</button>
@@ -71,6 +80,9 @@
         </div>
     </div>
 
+    {% block sidebar %}
+
+    {% endblock %}
     <div class="container mx-auto flex items-center justify-center">
         {% block content %}
             
@@ -85,6 +97,6 @@
             {% endfor %}
         </div>
     {% endif %}
-    <script src="{% static 'js/script.js' %}?v=3"></script>
+    <script src="{% static 'js/script.js' %}?v=7"></script>
 </body>
 </html>

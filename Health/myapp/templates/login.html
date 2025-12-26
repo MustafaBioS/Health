@@ -62,11 +62,16 @@
             opacity: 0.7;
             cursor: pointer;
         }
+
+        #box {
+            box-shadow: 0px 2px 50px rgba(0,0,0,0.6);
+        }
+
     </style>
 </head>
 <body class="m-0 p-0 bg-[#070f2b]">
     <div class="container mx-auto flex items-center justify-center h-screen w-screen">
-        <div class="anim h-175 w-125 bg-[#0b1a4a] rounded-xl flex flex-col items-center">
+        <div id="box" class="anim h-175 w-125 bg-[#0b1a4a] rounded-xl flex flex-col items-center">
             <h1 class="anim text-5xl text-white font-semibold mt-12">{% block title2 %}Login{% endblock %}</h1>
             {% block content %}
             <form action="{% url 'Login' %}" method="post" class="flex flex-col justify-center items-center h-[100%] mt-20 w-full">
@@ -90,6 +95,6 @@
         </div>
     {% endif %}
 
-    <script src="{% static 'js/script.js' %}?v=3"></script>
+    <script src="{% static 'js/script.js' %}?v=7"></script>
 </body>
 </html>
